@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+logs/
+secrets/
+
+# Локальные настройки и секреты
+.env
+.venv/
+.idea/
+logs/
+config/airflow.cfg
+secrets/
+__pycache__/
