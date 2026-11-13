@@ -1,0 +1,28 @@
+- table_name: test_yarilo
+  table_ddl: |
+    CREATE TABLE IF NOT EXISTS test_yarilo(
+      lti_user_id VARCHAR(255),
+      attempt_type VARCHAR(255),
+      amount DECIMAL(18, 2)
+    )
+  table_dml: |
+    SELECT
+      lti_user_id,
+      attempt_type,
+      COUNT(*) AS amount
+    FROM yarilo_table
+    WHERE created_at::date = '{{ ds }}'
+    GROUP BY 1,2
+  need_to_export: true
+
+- table_name: test_yarilo_2
+  table_ddl: |
+    CREATE TABLE IF NOT EXISTS test_yarilo_2(
+      lti_user_id VARCHAR(255),
+      attempt_type VARCHAR(255)
+    )
+  table_dml: |
+    SELECT lti_user_id,attempt_type 
+    FROM yarilo_table
+    WHERE created_at::date = '{{ ds }}'
+  need_to_export: false
